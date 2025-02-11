@@ -1,3 +1,4 @@
+
 #ifndef DATATYPE_H
 #define DATATYPE_H
 
@@ -21,8 +22,7 @@ typedef struct {
     char name[20];
     char phone[10];
     bool status;
-    Book borrowedBooks[10]; // Giả sử mỗi thành viên có thể mượn tối đa 10 sách
-    int borrowedCount; // Số lượng sách đã mượn
+    int borrowedCount;
 } Member;
 
 #endif

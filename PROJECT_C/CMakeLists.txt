@@ -8,4 +8,5 @@ add_executable(PROJECT_C main.c
         cmake-build-debug/include/datatype.h
         src/function.c
         include/function.h
-        include/datatype.h)
+        include/datatype.h
+)
