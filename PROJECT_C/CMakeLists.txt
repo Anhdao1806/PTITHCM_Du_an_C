@@ -1,12 +1,8 @@
-cmake_minimum_required(VERSION 3.30)
-project(PROJECT_C C)
+cmake_minimum_required(VERSION 3.15)
+project(PROJECT_C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 
-add_executable(PROJECT_C main.c
-        cmake-build-debug/include/function.h
-        cmake-build-debug/include/datatype.h
-        src/function.c
-        include/function.h
-        include/datatype.h
-)
+include_directories(include)
+
+add_executable(PROJECT_C main.c src/function.c include/function.h)

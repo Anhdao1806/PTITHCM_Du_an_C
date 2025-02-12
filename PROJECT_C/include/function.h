@@ -3,7 +3,7 @@
 #define FUNCTION_H
 
 #include "datatype.h"
-
+void pressAnyKeyToReturn();
 void displayMainMenu();
 void displayBookMenu();
 void displayMemberMenu();
