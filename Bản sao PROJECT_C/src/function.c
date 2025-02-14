@@ -67,7 +67,6 @@ void addBook(Book books[], int *count) {
         printf("Enter Book ID (max 9 characters, non-empty): "); // Yêu cầu nhập ID sách không rỗng và tối đa 9 ký tự
         fgets(buffer, sizeof(buffer), stdin);
         buffer[strcspn(buffer, "\n")] = '\0'; // Loại bỏ ký tự xuống dòng ở cuối chuỗi
-
         if (strlen(buffer) == 0) {
             printf("Book ID cannot be empty. Please try again.\n"); // Nếu rỗng thì yêu cầu nhập lại
             continue;
@@ -91,7 +90,6 @@ void addBook(Book books[], int *count) {
         strcpy(newBook.bookId, buffer);
         break;
     }
-
     // Nhập và kiểm tra Book Title (không trống, độ dài hợp lệ, không trùng nhau)
     while (1) {
         printf("Enter Book Title (max 29 characters, non-empty): "); // Yêu cầu nhập tên sách không rỗng và tối đa 29 ký tự
@@ -194,7 +192,6 @@ void addBook(Book books[], int *count) {
         newBook.publication.month = month;
         break;
     }
-
     // Nhập và kiểm tra năm xuất bản (year)
     while (1) {
         char numBuffer[20];
@@ -208,7 +205,6 @@ void addBook(Book books[], int *count) {
         newBook.publication.year = year;
         break;
     }
-
     // Thêm sách mới vào mảng và cập nhật số lượng sách
     books[*count] = newBook;
     (*count)++;
@@ -223,7 +219,6 @@ void addBook(Book books[], int *count) {
         printf("Enter the Book ID to edit (or 'q' to return): ");
         scanf("%s", id);
         getchar();
-
         if (strcmp(id, "q") == 0) return;  // Quay lại menu nếu nhập 'q'
 
         for (int i = 0; i < count; i++) {
@@ -295,14 +290,11 @@ void addBook(Book books[], int *count) {
 void deleteBook(Book books[], int *count) {
     system("clear");
     printf("\n========== Delete a Book ==========\n");
-
     char id[10];
     printf("Enter the Book ID to delete (or 'q' to return): ");
     scanf("%s", id);
     getchar();  // Xóa ký tự xuống dòng trong bộ đệm
-
     if (strcmp(id, "q") == 0) return;  // Quay lại menu nếu nhập 'q'
-
     for (int i = 0; i < *count; i++) {
         if (strcmp(books[i].bookId, id) == 0) {
             // Hiển thị thông tin sách trước khi xóa
@@ -311,11 +303,9 @@ void deleteBook(Book books[], int *count) {
             printf("Author : %s\n", books[i].author);
             printf("Price  : %d\n", books[i].price);
             printf("\nAre you sure you want to delete this book? (Yes / No): ");
-
             char choice;
             scanf(" %c", &choice);
             getchar();
-
             if (choice == 'y' || choice == 'Y') {
                 // Dời các sách sau sách bị xóa lên một vị trí
                 for (int j = i; j < *count - 1; j++) {
@@ -342,7 +332,6 @@ void displaySortMenu() {
     printf("3. Return to Book Management Menu\n");
     printf("Enter your choice: ");
 }
-
 // Hàm sắp xếp sách theo giá
 void sortBooksByPrice(Book books[], int count) {
     if (count == 0) {
@@ -350,22 +339,18 @@ void sortBooksByPrice(Book books[], int count) {
         pressAnyKeyToReturn();
         return;
     }
-
     int choice;
     while (1) {
         system("clear");
         displaySortMenu();
         scanf("%d", &choice);
         getchar();
-
         if (choice == 3) return;  // Quay lại menu quản lý sách
-
         if (choice != 1 && choice != 2) {
             printf("Invalid choice. Try again.\n");
             pressAnyKeyToReturn();
             continue;
         }
-
         // Sắp xếp nổi bọt theo giá
         for (int i = 0; i < count - 1; i++) {
             for (int j = 0; j < count - i - 1; j++) {
@@ -374,7 +359,6 @@ void sortBooksByPrice(Book books[], int count) {
                     (choice == 2 && books[j].price < books[j + 1].price)) { // Giá giảm dần
                     swap = 1;
                 }
-
                 if (swap) {
                     Book temp = books[j];
                     books[j] = books[j + 1];
@@ -382,9 +366,7 @@ void sortBooksByPrice(Book books[], int count) {
                 }
             }
         }
-
         printf("\nBooks sorted successfully!\n");
-
         // Hiển thị danh sách sau khi sắp xếp
         printf("\n%-10s %-30s %-20s %-10s %-10s %-10s\n", "Book ID", "Title", "Author", "Quantity", "Price", "Pub. Date");
         printf("-------------------------------------------------------------------------------\n");
@@ -394,7 +376,6 @@ void sortBooksByPrice(Book books[], int count) {
                    books[i].quantity, books[i].price,
                    books[i].publication.day, books[i].publication.month, books[i].publication.year);
         }
-
     }
 }
 // Hàm tìm kiếm sách theo tên
@@ -447,17 +428,13 @@ void loadBooksFromFile(Book books[], int *bookCount) {
     fclose(file);
     printf("Book data is read from file\n");
 }
-
-
 void addMember(Member members[], int *count) {
     printf("\nEnter member details:\n");
     printf("Member ID: "); scanf("%s", members[*count].memberId);
     getchar(); // Xóa ký tự '\n' còn sót lại trong bộ đệm
-
     printf("Name: ");
     fgets(members[*count].name, sizeof(members[*count].name), stdin);
     if (strchr(members[*count].name, '\n')) members[*count].name[strcspn(members[*count].name, "\n")] = '\0';
-
     printf("Phone: "); scanf("%s", members[*count].phone);
 
     (*count)++;
@@ -465,7 +442,7 @@ void addMember(Member members[], int *count) {
 }
 void displayMembers(Member members[], int count) {
     printf("\n%-10s %-20s %-10s\n", "Member ID", "Name", "Phone");
-    printf("------------------------------------\n");
+    printf("-------------------------------------------------\n");
     for (int i = 0; i < count; i++) {
         printf("%-10s %-20s %-10s\n", members[i].memberId, members[i].name, members[i].phone);
     }
