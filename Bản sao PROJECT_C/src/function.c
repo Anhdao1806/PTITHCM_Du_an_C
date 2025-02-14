@@ -395,7 +395,6 @@ void sortBooksByPrice(Book books[], int count) {
                    books[i].publication.day, books[i].publication.month, books[i].publication.year);
         }
 
-        pressAnyKeyToReturn();
     }
 }
 // Hàm tìm kiếm sách theo tên

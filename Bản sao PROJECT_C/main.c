@@ -59,6 +59,7 @@ int main() {
                             system("clear");
                         sortBooksByPrice(books, bookCount);
                         pressAnyKeyToReturn();
+                        break;
                         case 6:
                             system("clear");
                         searchBookByTitle(books, bookCount); // Gọi hàm tìm kiếm sách
