@@ -1,0 +1,3 @@
+/Users/macone/Downloads/Bản sao PROJECT_C/cmake-build-debug/CMakeFiles/PROJECT_C.dir
+/Users/macone/Downloads/Bản sao PROJECT_C/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/macone/Downloads/Bản sao PROJECT_C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
