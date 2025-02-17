@@ -27,15 +27,15 @@ void displayMainMenu() {
 
 void displayBookMenu() {
     printf("┌───────────────────────────────────┐\n");
-    printf("│           Book Management         │\n");
+    printf("│        Book Management            │\n");
     printf("├───────────────────────────────────┤\n");
-    printf("         1. Display book list\n");
-    printf("         2. Add a book\n");
-    printf("         3. Edit a book\n");
-    printf("         4. Delete a book\n");
-    printf("         5. Sort books by price\n");
-    printf("         6. Search book by title\n");
-    printf("         7. Return to main menu\n");
+    printf("│        1. Display book list       │\n");
+    printf("│        2. Add a book              │\n");
+    printf("│        3. Edit a book             │\n");
+    printf("│        4. Delete a book           │\n");
+    printf("│        5. Sort books by price     │\n");
+    printf("│        6. Search book by title    │\n");
+    printf("│        7. Return to main menu     │\n");
     printf("└───────────────────────────────────┘\n");
     printf("Enter your choice: ");
 }
@@ -50,6 +50,7 @@ void displayMemberMenu() {
     printf("Enter your choice: ");
 }
 void displayBooks(Book books[], int count) {
+    printf("──────────────────────────────────────────LIST BOOK────────────────────────────────────────────\n");
     printf("\n%-10s %-30s %-20s %-10s %-10s %-10s\n", "Book ID", "Title", "Author", "Quantity", "Price", "Pub. Date");
     printf("───────────────────────────────────────────────────────────────────────────────────────────────\n");
     for (int i = 0; i < count; i++) {
@@ -388,6 +389,7 @@ void searchBookByTitle(Book books[], int count) {
     int found = 0; // Biến kiểm tra xem có sách nào được tìm thấy hay không
     printf("Search results:\n");
     printf("%-10s %-30s %-20s %-10s %-10s %-10s\n", "Book ID", "Title", "Author", "Quantity", "Price", "Pub. Date");
+    printf("---------------------------------------------------------------------------------------------------\n");
 
     for (int i = 0; i < count; i++) {
         if (strstr(books[i].title, keyword) != NULL) { // Kiểm tra xem chuỗi nhập vào có trong tên sách không
