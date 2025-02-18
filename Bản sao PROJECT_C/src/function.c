@@ -210,6 +210,7 @@ void addBook(Book books[], int *count) {
     books[*count] = newBook;
     (*count)++;
     printf("Book added successfully!\n");
+    saveBooksToFile(books, *count);
 }
 
  void editBook(Book books[], int count) {
@@ -232,9 +233,9 @@ void addBook(Book books[], int *count) {
                 printf("Quantity      : %d\n", books[i].quantity);
                 printf("Price         : %d\n", books[i].price);
                 printf("Publication Date: %02d/%02d/%04d\n",
-                       books[i].publication.day,
-                       books[i].publication.month,
-                       books[i].publication.year);
+                books[i].publication.day,
+                books[i].publication.month,
+                books[i].publication.year);
 
                 printf("\nEnter new information (leave empty to keep current value):\n");
 
@@ -385,12 +386,10 @@ void searchBookByTitle(Book books[], int count) {
     printf("Enter the name of the book you want to search: ");
     fgets(keyword, sizeof(keyword), stdin);
     keyword[strcspn(keyword, "\n")] = 0; // Loại bỏ ký tự xuống dòng ở cuối chuỗi
-
     int found = 0; // Biến kiểm tra xem có sách nào được tìm thấy hay không
     printf("Search results:\n");
     printf("%-10s %-30s %-20s %-10s %-10s %-10s\n", "Book ID", "Title", "Author", "Quantity", "Price", "Pub. Date");
     printf("---------------------------------------------------------------------------------------------------\n");
-
     for (int i = 0; i < count; i++) {
         if (strstr(books[i].title, keyword) != NULL) { // Kiểm tra xem chuỗi nhập vào có trong tên sách không
             found = 1;
@@ -400,14 +399,13 @@ void searchBookByTitle(Book books[], int count) {
                    books[i].publication.day, books[i].publication.month, books[i].publication.year);
         }
     }
-
     if (!found) {
         printf("No books found!\n"); // Nếu không có kết quả, thông báo cho người dùng
     }
 }
 // Hàm lưu danh sách sách vào file nhị phân
 void saveBooksToFile(Book books[], int bookCount) {
-    FILE *file = fopen("books.bin", "wb"); // Mở file ở chế độ ghi nhị phân (write binary)
+    FILE *file = fopen("/Users/macone/Downloads/Bản sao PROJECT_C/data/books.bin", "wb"); // Mở file ở chế độ ghi nhị phân (write binary)
     if (!file) {
         printf("Cannot open file\n");
         return;
@@ -419,7 +417,7 @@ void saveBooksToFile(Book books[], int bookCount) {
 }
 // Hàm đọc danh sách sách từ file nhị phân
 void loadBooksFromFile(Book books[], int *bookCount) {
-    FILE *file = fopen("books.bin", "rb"); // Mở file ở chế độ đọc nhị phân (read binary)
+    FILE *file = fopen("/Users/macone/Downloads/Bản sao PROJECT_C/data/books.bin", "rb"); // Mở file ở chế độ đọc nhị phân (read binary)
     if (!file) {
         printf("Cannot open file\n");
         *bookCount = 0;
@@ -438,7 +436,6 @@ void addMember(Member members[], int *count) {
     fgets(members[*count].name, sizeof(members[*count].name), stdin);
     if (strchr(members[*count].name, '\n')) members[*count].name[strcspn(members[*count].name, "\n")] = '\0';
     printf("Phone: "); scanf("%s", members[*count].phone);
-
     (*count)++;
     printf("Member added successfully!\n");
 }
@@ -455,15 +452,12 @@ void editMember(Member members[], int count) {
     printf("Enter the member ID to edit: ");
     scanf("%s", id);
     getchar(); // Xóa ký tự '\n' còn sót lại trong bộ đệm
-
     for (int i = 0; i < count; i++) {
         if (strcmp(members[i].memberId, id) == 0) {
             printf("Enter new name: ");
             fgets(members[i].name, sizeof(members[i].name), stdin);
             if (strchr(members[i].name, '\n')) members[i].name[strcspn(members[i].name, "\n")] = '\0';
-
             printf("Enter new phone: "); scanf("%s", members[i].phone);
-
             printf("Member information updated successfully!\n");
             return;
         }

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h> // Thêm thư viện để dùng system("clear")
-#include "datatype.h"   // Thêm dòng này để nhận diện Book và Member
-#include "function.h"
+#include "include/datatype.h"
+#include "include/function.h"
 
 int main() {
     Book books[100];
